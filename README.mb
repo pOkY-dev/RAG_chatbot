@@ -1,0 +1,45 @@
+Car Rental Chatbot with Vector Search and BART Response Generation
+This project implements a Telegram chatbot for car rental queries. The bot utilizes vector similarity search and a BART (Facebook's BART-large) model for generating responses based on user queries.
+
+Components
+1. Index Creation (create_index.py)
+Purpose: Creates an index of car rental data using LLAMA-2's VectorStoreIndex with embeddings from Hugging Face.
+Input: Excel file containing car rental data.
+Output: Serialized index file (rental_car_index.pkl) for efficient query processing.
+
+python create_index.py
+2. Query Handling (query_handler.py)
+Purpose: Handles user queries by retrieving relevant information from the index and formatting responses.
+Dependencies: Uses Faiss for efficient vector similarity search and Hugging Face's BART model for response generation.
+Functions:
+handle_complex_queries(query): Processes complex queries using the indexed data and BART model.
+handle_sequential_queries(queries): Processes a sequence of queries.
+get_lowest_priced_cars(locations): Retrieves the lowest priced cars from specified locations.
+response = handle_complex_queries("Show me SUVs in Paris")
+
+3. Telegram Bot Integration (telegram_bot.py)
+Purpose: Provides a Telegram interface for interacting with the car rental service.
+Dependencies: Uses python-telegram-bot library.
+Commands:
+/start: Initializes the bot and provides a greeting message.
+/clear: Clears the bot's memory/context.
+Message Handling:
+Handles text messages by querying the query_handler functions and sending formatted responses.
+Installation:
+
+Install Python dependencies:
+pip install -r requirements.txt
+Ensure the environment includes required libraries such as torch, transformers, pandas, numpy, scikit-learn, llama-2 and python-telegram-bot.
+Execution:
+
+Run create_index.py to build the index from your car rental data.
+Execute telegram_bot.py to start the Telegram bot.
+Interact with the bot via the Telegram app by sending queries.
+Troubleshooting
+Network Errors:
+If encountering "Bad Gateway" or similar errors, ensure stable internet connectivity and check the Telegram API status.
+Dependency Issues:
+Verify that all required libraries are correctly installed and up-to-date.
+Notes
+This project uses LLAMA-2 for vector indexing and Facebook's BART-large model for generating responses, providing a robust solution for car rental queries.
+Ensure proper handling of sensitive data and comply with privacy regulations when deploying or modifying the bot.

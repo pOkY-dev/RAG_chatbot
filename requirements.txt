@@ -1,0 +1,7 @@
+pandas 2.2.1
+pickle
+llama_index
+transformers 4.40.0
+torch 2.3.0
+telegram 0.0.1
+logging
